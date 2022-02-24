@@ -11,7 +11,7 @@ import SwiftUI
 struct Picnic_WeatherApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WeatherView()
         }
     }
 }
