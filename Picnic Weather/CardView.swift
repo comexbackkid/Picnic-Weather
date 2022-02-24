@@ -22,7 +22,7 @@ struct CardView: View {
             Spacer()
             
             // This new Image is deriving its string from computed property in our Day struct
-            Image(systemName: day.newIcon ?? day.icon?.imageName ?? "smoke.fill")
+            Image(systemName: day.cardIcon ?? day.icon?.imageName ?? "smoke.fill")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 40)

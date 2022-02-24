@@ -77,10 +77,11 @@ extension WeatherView {
                 .foregroundColor(.white)
             
             Text("Welcome to Picnic Weather!")
+                .fontWeight(.heavy)
                 .padding()
                 .foregroundColor(.white)
             
-            Text("Share your location in order to receive weather updates")
+            Text("Share your location in order to receive accurate weather ⛅️")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .padding()
@@ -110,18 +111,11 @@ extension WeatherView {
     private var headerView: some View {
         HStack {
             
-            if let location = self.locationMgr.cityName {
-                Text(location.uppercased())
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                
-            } else {
-                Text("LOCATION UNKNOWN")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-            }
+            Text(self.locationMgr.cityName?.uppercased() ?? "")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.white)
+            
         }
         .padding(.top, 10)
     }

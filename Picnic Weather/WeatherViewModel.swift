@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-let defaultCoordinates = CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)
 let apiURL = "https://api.lil.software/weather"
 
 class WeatherViewModel: ObservableObject {
@@ -28,6 +27,8 @@ class WeatherViewModel: ObservableObject {
 //        timer?.invalidate()
 //    }
       
+    
+    // What do we do if the forecast fails to load? How long do we give it?
     func loadForecast() {
         guard let coords = LocationManager.shared.lastKnownCoordinate else { return }
         

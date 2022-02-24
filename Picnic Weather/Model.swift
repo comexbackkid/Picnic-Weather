@@ -16,25 +16,44 @@ struct Day: Codable, Hashable {
     var name: String
     var temperature: Int
     var description: String
-    var newIcon: String? {
-        chooseIcon(name: name, weatherDescription: description)
+    var cardIcon: String? {
+  
+        iconSelector(name: name, weatherDescription: description)
+        
+//        if self.name.lowercased().contains("night") {
+//            return "moon.fill"
+//        } else {
+//            return chooseIcon(name: name, weatherDescription: description)
+//        }
     }
     var icon: WeatherIcon? {
         return WeatherIcon(rawValue: description)
     }
 }
 
-func chooseIcon(name: String, weatherDescription: String) -> String? {
+func iconSelector(name: String, weatherDescription: String) -> String? {
     let description = weatherDescription.lowercased()
+    let name = name.lowercased()
     
-    if name.lowercased().contains("night") {
-        return "cloud.moon.fill"
-    } else if description.contains("showers") || description.contains("rain") {
-        return "cloud.rain.fill"
-    } else if name.lowercased().contains("night") && description.contains("rain") || description.contains("showers") {
-        return "cloud.moon.rain"
+    if name.contains("night") {
+        switch description {
+        case let str where str.contains("snow"):
+            return "cloud.snow.fill"
+        case let str where str.contains("rain"):
+            return "cloud.moon.rain.fill"
+        case let str where str.contains("clear"):
+            return "moon.stars.fill"
+        default:
+            return "cloud.moon.fill"
+        }
+        
     } else {
-        return nil
+        switch description {
+        case let str where str.contains("snow"):
+            return "snowflake"
+        default:
+            return nil
+        }
     }
 }
 
@@ -106,3 +125,18 @@ enum WeatherIcon: String, Codable {
         return Image(systemName: imageName)
     }
 }
+
+//func chooseIcon(name: String, weatherDescription: String) -> String? {
+//    let description = weatherDescription.lowercased()
+//
+//    switch description {
+//    case let str where str.contains("snow"):
+//        return "snowflake"
+//    case let str where str.contains("rain"):
+//        return "cloud.rain.fill"
+//    case let str where str.contains("night"):
+//        return "cloud.moon.fill"
+//    default:
+//        return nil
+//    }
+//}
