@@ -16,7 +16,6 @@ struct WeatherView: View {
     var body: some View {
         
         // Using Group because we can produce different kinds of views from a conditional
-        // Something like a .onAppear() will then fire on each view
         Group {
             
             if locationMgr.locationAuth {
@@ -41,7 +40,9 @@ struct WeatherView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .onReceive(locationMgr.objectWillChange) { _ in
-                    vm.loadForecast()
+                    Task {
+                        await vm.loadForecast()
+                    }
                 }
                 
             } else {
@@ -65,49 +66,43 @@ struct WeatherView_Previews: PreviewProvider {
 
 extension WeatherView {
     
+    // Onboarding view that requests user's location
     private var startView: some View {
         VStack {
             
             Spacer()
             
-            Image(systemName: "ant.fill")
+            Image("ant")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 80)
-                .foregroundColor(.white)
+                .padding(.bottom, 30)
             
             Text("Welcome to Picnic Weather!")
-                .fontWeight(.heavy)
-                .padding()
+                .fontWeight(.bold)
+                .font(.subheadline)
+                .padding(.horizontal)
+                .padding(10)
                 .foregroundColor(.white)
             
             Text("Share your location in order to receive accurate weather ⛅️")
-                .font(.title3)
+                .font(.title2)
                 .multilineTextAlignment(.center)
-                .padding()
+                .padding(.horizontal)
                 .foregroundColor(.white)
             
             Spacer()
             
             Button {
                 self.locationMgr.start()
-                
             } label: {
-                Text("Share location")
-                    .bold()
-                    .foregroundColor(.black)
-                
-                Image(systemName: "location.fill")
+                WeatherButtonView(title: "Share location", imageName: "location.fill")
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.white)
-            .clipShape(Capsule())
-            .padding()
         }
         .padding()
     }
     
+    // User's location
     private var headerView: some View {
         HStack {
             
@@ -115,11 +110,11 @@ extension WeatherView {
                 .font(.headline)
                 .fontWeight(.bold)
                 .foregroundColor(.white)
-            
         }
         .padding(.top, 10)
     }
     
+    // Main screen with Day, Weather Description, and Icon
     private var mainWeatherView: some View {
         VStack (spacing: 5) {
             
@@ -148,8 +143,33 @@ extension WeatherView {
                     .font(.largeTitle)
                     .foregroundColor(.white)
                     .padding(.top)
+                
             } else {
-                ProgressView()
+                VStack {
+                    
+                    ProgressView()
+                        .padding(.bottom)
+                    
+                    if let error = vm.error {
+                        Text("Uh oh, we've hit a snag.")
+                            .bold()
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .padding(.bottom)
+                        
+                        Text("Error: " + error.error.errorDescription)
+                            .padding()
+                        
+                        Button {
+                            Task {
+                                await vm.loadForecast()
+                            }
+                            
+                        } label: {
+                            WeatherButtonView(title: "Try again")
+                        }
+                    }
+                }
             }
         }
     }

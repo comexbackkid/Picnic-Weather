@@ -47,25 +47,18 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     func updateAuthorizationStatus() {
         switch manager.authorizationStatus {
             
-        case .notDetermined:
-            print("DEBUG: Status not determined.")
-        case .restricted:
-            print("DEBUG: Status restricted due to parental controls.")
-        case .denied:
-            print("DEBUG: Denied.")
-        case .authorizedAlways:
-            print("Status always authorized.")
-        case .authorizedWhenInUse:
-            self.locationAuth = true
+        case .notDetermined: print("DEBUG: Status not determined.")
+        case .restricted: print("DEBUG: Status restricted due to parental controls.")
+        case .denied: print("DEBUG: Denied.")
+        case .authorizedAlways: print("Status always authorized.")
+        case .authorizedWhenInUse: self.locationAuth = true
             print("Status authorized when in use.")
-        @unknown default:
-            break
+        @unknown default: break
         }
     }
     
     // This function is what actually receives the user's location data
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         guard let userLocation = locations.first else { return }
         
         DispatchQueue.main.async {
@@ -76,7 +69,6 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     // Geocode has a method called reverseGeocode that takes in a CLLocation object and let's you grab the city or street, etc.
     func getCityName(location: CLLocation) {
-        
         geocoder.reverseGeocodeLocation(location, completionHandler: { (places, error) in
             
             if error == nil {
@@ -85,7 +77,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 }
                 
             } else {
-                // Error
+                self.cityName = "LOCATION UNKNOWN"
             }
         })
     }
