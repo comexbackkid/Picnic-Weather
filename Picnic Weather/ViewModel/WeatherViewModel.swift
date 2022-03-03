@@ -44,6 +44,14 @@ class WeatherViewModel: ObservableObject {
     
     
     
+
+
+
+
+
+
+
+
     
     // Using "async throws" here & so we have to handle the proper task handlng on our View
     // Any errors from this function will get thrown up and handled top level where it was called.

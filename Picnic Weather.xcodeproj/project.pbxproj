@@ -12,6 +12,7 @@
 		7C51FA1A27C2F980007D251B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C51FA1927C2F980007D251B /* Extensions.swift */; };
 		7C51FA1C27C52D03007D251B /* LocationServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C51FA1B27C52D03007D251B /* LocationServices.swift */; };
 		7C78262227C9551000FF16DD /* WeatherButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C78262127C9551000FF16DD /* WeatherButtonView.swift */; };
+		7C78262827C9841200FF16DD /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C78262727C9841200FF16DD /* Alerts.swift */; };
 		7C8FD73227C17FA600F10C01 /* Picnic_WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8FD73127C17FA600F10C01 /* Picnic_WeatherApp.swift */; };
 		7C8FD73427C17FA600F10C01 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8FD73327C17FA600F10C01 /* ContentView.swift */; };
 		7C8FD73627C17FA900F10C01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C8FD73527C17FA900F10C01 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		7C51FA1927C2F980007D251B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7C51FA1B27C52D03007D251B /* LocationServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationServices.swift; sourceTree = "<group>"; };
 		7C78262127C9551000FF16DD /* WeatherButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherButtonView.swift; sourceTree = "<group>"; };
+		7C78262727C9841200FF16DD /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		7C8FD72E27C17FA600F10C01 /* Picnic Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Picnic Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C8FD73127C17FA600F10C01 /* Picnic_WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picnic_WeatherApp.swift; sourceTree = "<group>"; };
 		7C8FD73327C17FA600F10C01 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				7C51FA1B27C52D03007D251B /* LocationServices.swift */,
 				7C51FA1927C2F980007D251B /* Extensions.swift */,
 				7CA97B4D27C82A7800CDD16D /* APIError.swift */,
+				7C78262727C9841200FF16DD /* Alerts.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				7C8FD73227C17FA600F10C01 /* Picnic_WeatherApp.swift in Sources */,
 				7C51FA1C27C52D03007D251B /* LocationServices.swift in Sources */,
 				7C51FA1A27C2F980007D251B /* Extensions.swift in Sources */,
+				7C78262827C9841200FF16DD /* Alerts.swift in Sources */,
 				7CA97B4E27C82A7800CDD16D /* APIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -85,7 +85,7 @@ extension WeatherView {
                 .padding(10)
                 .foregroundColor(.white)
             
-            Text("Share your location in order to receive accurate weather ⛅️")
+            Text("To get started, click the button below to allow location sharing.")
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
@@ -93,13 +93,28 @@ extension WeatherView {
             
             Spacer()
             
-            Button {
-                self.locationMgr.start()
-            } label: {
-                WeatherButtonView(title: "Share location", imageName: "location.fill")
+            if locationMgr.manager.authorizationStatus == .denied {
+                Text("Location services disabled.")
+                    .font(.subheadline)
+                    .padding(.horizontal)
+                    .padding(10)
+                    .foregroundColor(.white)
+            } else {
+                Button {
+                    self.locationMgr.start()
+                } label: {
+                    WeatherButtonView(title: "Share location", imageName: "location.fill")
+                }
             }
         }
+        .frame(maxWidth: .infinity)
         .padding()
+        .alert(item: $locationMgr.alertItem) { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  primaryButton: alertItem.primaryButton,
+                  secondaryButton: alertItem.secondaryButton)
+        }
     }
     
     // User's location
@@ -149,6 +164,7 @@ extension WeatherView {
                     
                     ProgressView()
                         .padding(.bottom)
+                        .foregroundColor(.white)
                     
                     if let error = vm.error {
                         Text("Uh oh, we've hit a snag.")

@@ -11,13 +11,12 @@ import SwiftUI
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    // You can store anything here related to the location if we want like speed, altitude, coordinates, distance, etc.
-    // We're just using coordinates becuase our Weather API needs coordinates to get us the weather data
     @Published var lastKnownCoordinate: CLLocationCoordinate2D?
     @Published var cityName: String?
     @Published var locationAuth: Bool = false
+    @Published var alertItem: AlertItem?
     
-    // This is a singleton, you create the Object once, then it can be used or shared everywhere. Sometimes named "shared"
+    // This is a singleton, you create the Object once, then it can be used or shared everywhere.
     static let shared = LocationManager()
     
     let manager = CLLocationManager()
@@ -49,10 +48,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             
         case .notDetermined: print("DEBUG: Status not determined.")
         case .restricted: print("DEBUG: Status restricted due to parental controls.")
-        case .denied: print("DEBUG: Denied.")
+        case .denied: alertItem = AlertContext.deniedPermission
         case .authorizedAlways: print("Status always authorized.")
         case .authorizedWhenInUse: self.locationAuth = true
-            print("Status authorized when in use.")
         @unknown default: break
         }
     }
