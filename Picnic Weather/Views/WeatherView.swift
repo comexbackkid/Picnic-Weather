@@ -80,13 +80,13 @@ extension WeatherView {
             
             Text("Welcome to Picnic Weather!")
                 .fontWeight(.bold)
-                .font(.subheadline)
+                .font(.title2)
                 .padding(.horizontal)
                 .padding(10)
                 .foregroundColor(.white)
             
-            Text("To get started, click the button below to allow location sharing.")
-                .font(.title2)
+            Text("To get started, click the button below to allow location sharing. You can always opt out in the future by going to your Settings in iOS.")
+                .font(.subheadline)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
                 .foregroundColor(.white)
@@ -95,15 +95,15 @@ extension WeatherView {
             
             if locationMgr.manager.authorizationStatus == .denied {
                 Text("Location services disabled.")
-                    .font(.subheadline)
+                    .bold()
                     .padding(.horizontal)
-                    .padding(10)
+                    .padding(32)
                     .foregroundColor(.white)
             } else {
                 Button {
                     self.locationMgr.start()
                 } label: {
-                    WeatherButtonView(title: "Share location", imageName: "location.fill")
+                    WeatherButtonView(title: "Share Location", imageName: "location.fill")
                 }
             }
         }
@@ -117,7 +117,7 @@ extension WeatherView {
         }
     }
     
-    // User's location
+    // User's location within nearest kilometer
     private var headerView: some View {
         HStack {
             
@@ -155,7 +155,7 @@ extension WeatherView {
                 }
                 
                 Text(day.temperature.toString() + "ºF")
-                    .font(.largeTitle)
+                    .font(.system(size: 60))
                     .foregroundColor(.white)
                     .padding(.top)
                 

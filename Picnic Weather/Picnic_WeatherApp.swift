@@ -12,6 +12,7 @@ struct Picnic_WeatherApp: App {
     var body: some Scene {
         WindowGroup {
             WeatherView()
+                .preferredColorScheme(.dark)
         }
     }
 }
