@@ -145,8 +145,8 @@ extension WeatherView {
                     .padding(.bottom, 20)
                     .foregroundColor(.white)
                 
-                if let icon = day.icon {
-                    icon.image
+                if let icon = day.cardIcon {
+                    Image(systemName: icon)
                         .iconStyle()
                     
                 } else {
@@ -155,7 +155,7 @@ extension WeatherView {
                 }
                 
                 Text(day.temperature.toString() + "ºF")
-                    .font(.system(size: 60))
+                    .font(.system(size: 70))
                     .foregroundColor(.white)
                     .padding(.top)
                 

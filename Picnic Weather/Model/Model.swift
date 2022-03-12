@@ -24,7 +24,8 @@ struct Day: Codable, Hashable {
     }
 }
 
-func renderIcon(name: String, weatherDescription: String) -> String? {
+private func renderIcon(name: String, weatherDescription: String) -> String? {
+    
     let description = weatherDescription.lowercased()
     let name = name.lowercased()
     
@@ -39,10 +40,18 @@ func renderIcon(name: String, weatherDescription: String) -> String? {
     } else {
         switch description {
         case let str where str.contains("snow"): return "snowflake"
+        case let str where str.contains("rain") || str.contains("drizzle") || str.contains("shower"): return "cloud.rain.fill"
+        case let str where str.contains("sun"): return "cloud.sun.fill"
+        case let str where str.contains("cloud"): return "cloud.fill"
         default: return nil
         }
     }
 }
+
+
+
+
+
 
 enum WeatherIcon: String, Codable {
     case sunny                      = "Sunny"

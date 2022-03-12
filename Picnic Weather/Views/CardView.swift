@@ -30,8 +30,8 @@ struct CardView: View {
             
             Spacer()
             
-            Text(day.description)
-                .font(.caption2)
+            Text(day.temperature.toString() + "ºF")
+                .font(.caption)
                 .lineLimit(1)
                 
         }
