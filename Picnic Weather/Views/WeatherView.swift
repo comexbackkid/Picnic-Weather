@@ -117,7 +117,7 @@ extension WeatherView {
         }
     }
     
-    // User's location within nearest kilometer
+    // User's location within nearest three kilometers
     private var headerView: some View {
         HStack {
             
@@ -145,7 +145,7 @@ extension WeatherView {
                     .padding(.bottom, 20)
                     .foregroundColor(.white)
                 
-                if let icon = day.cardIcon {
+                if let icon = day.weatherIcon {
                     Image(systemName: icon)
                         .iconStyle()
                     

@@ -22,7 +22,7 @@ struct CardView: View {
             Spacer()
             
             // This new Image is deriving its string from computed property in our Day struct
-            Image(systemName: day.cardIcon ?? day.icon?.imageName ?? "smoke.fill")
+            Image(systemName: day.weatherIcon ?? "smoke.fill")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 40)
@@ -45,5 +45,6 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         CardView(day: Day(name: "Tomorrow", temperature: 20, description: "Rain showers"))
+            .preferredColorScheme(.dark)
     }
 }
